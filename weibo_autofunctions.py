@@ -1,8 +1,15 @@
 from selenium import webdriver
 import time
+import csv
 
 browser = webdriver.Chrome()
 
+#login weibo.com
+def open_weibocom():
+  browser.get('https://weibo.com')
+  browser.implicitly_wait(5)
+
+open_weibocom()
 
 # function of auto login weibo
 def weibo_login(username, password):
@@ -45,9 +52,31 @@ def add_follow(uid):
 
 
 # 每天学点心理学 UID
-uid = '1890826225'
-add_follow(uid)
+#uid = '1890826225'
+#add_follow(uid)
 
+#read csv to get uid list so add_follow can be called for each uid on iteration
+import csv
+
+uidList = []
+
+with open('uid.csv') as csvfile:
+    readCSV = csv.reader(csvfile, delimiter=',')
+    for row in readCSV:
+      print(row)
+      if row[0]:
+        uidList.append(row[0])
+
+print(uidList)
+
+
+def random_follow():
+  for i in range(50):
+    follow_button = browser.find_element_by_xpath('//a[@class="W_btn_b"]')
+    follow_button.click()
+    time.sleep(2)
+
+random_follow()
 
 # 给指定某条微博添加内容
 def add_comment(weibo_url, content):
