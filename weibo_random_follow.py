@@ -10,10 +10,10 @@ root= tk.Tk()
 canvas1 = tk.Canvas(root, width = 300, height = 300)
 canvas1.pack()
 
-def execute_message():
+#def execute_message():
 
-    label1 = tk.Label(root, text= '自动关注200次....', fg='green', font=('helvetica', 12, 'bold'))
-    canvas1.create_window(150, 200, window=label1)
+#    label1 = tk.Label(root, text= '自动关注200次....', fg='green', font=('helvetica', 12, 'bold'))
+#    canvas1.create_window(150, 200, window=label1)
 
 def weibo_login(username, password):
     #open weibo desktop page
@@ -29,9 +29,12 @@ def random_follow():
         follow_button.click()
         time.sleep(1)
 
+    
+
 def run():
     #start random following
-    execute_message()
+    #execute_message()
+    #time.sleep(2)
     random_follow()
 
 
@@ -39,8 +42,9 @@ def run():
 button1 = tk.Button(text='开始自动关注',command=run, bg='brown',fg='white')
 canvas1.create_window(150, 150, window=button1)
 
-root.mainloop()
-
 #no username or password passed to weibo_login for now
 weibo_login('', '')
+
+root.mainloop()
+
 
